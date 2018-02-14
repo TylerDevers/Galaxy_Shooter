@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public bool tripleShotPossible = true; //default will be false when power up created.
 	[SerializeField] private GameObject _laserPrefab;
+	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private float _rateOfFire = 0.25f;
 	[SerializeField] private float _nextFire = 0.0f;
 
@@ -60,8 +63,26 @@ public class Player : MonoBehaviour {
 	{
 		if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && Time.time > _nextFire)
 		{
-			Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.95f, 0), Quaternion.identity);
-			_nextFire = Time.time + _rateOfFire;
+			if (tripleShotPossible)
+			{
+				TripleShot();
+			}
+			else
+			{
+				SingleShot();
+			}
 		}
+	}
+
+    void TripleShot()
+    {
+		Instantiate(_tripleShotPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+		_nextFire = Time.time + _rateOfFire; 
+    }
+
+    void SingleShot()
+	{
+		Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.95f, 0), Quaternion.identity);
+		_nextFire = Time.time + _rateOfFire;
 	}
 }
