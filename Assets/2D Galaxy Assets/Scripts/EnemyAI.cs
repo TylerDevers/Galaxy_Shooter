@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour {
 
+
 	[SerializeField] float _enemySpeed = 2f;
 
-	// enemy moves down screen, then reappears in new location at top of screen.
-	// enemy bounds -7.5 and 7.5 on the x axis, -6.5 and 6.5 on y axis
+
 
 	// Use this for initialization
 	void Start () {
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour {
 	void Update () {
 		NewEnemyPosition();
 		Movement();
+
 	}
 
     void NewEnemyPosition()
@@ -36,6 +37,28 @@ public class EnemyAI : MonoBehaviour {
     void Movement()
 	{
 		transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+	}
+
+	public void DestroyEnemy()
+	{
+		DestroyObject(gameObject);
+	}
+
+	void OnTriggerEnter2D(Collider2D otherObject)
+	{
+		Laser laser = otherObject.GetComponent<Laser>();
+		Player player = otherObject.GetComponent<Player>();
+
+		if (player != null) 
+		{
+			DestroyEnemy();
+			player.LoseOneLife();
+		}
+		if (laser != null)
+		{
+			DestroyEnemy();
+			laser.DestroyLaser();
+		}
 	}
 
 }

@@ -14,19 +14,41 @@ public class Laser : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		LaserFired();
-		DestroyLaser();
+		LaserCleanUp();
 	}
 
 	void LaserFired()
 	{
 		transform.Translate(Vector3.up * _laserSpeed * Time.deltaTime);
 	}
-	void DestroyLaser()
+	void LaserCleanUp()
 	{
 		float laserLocation = gameObject.transform.position.y;
+		
 		if (laserLocation > 6)
+		{
+			if (gameObject.transform.parent != null)
+			{
+				DestroyObject(gameObject.transform.parent.gameObject);
+			}
+			else
+			{
+				DestroyObject(gameObject);
+			}
+		}
+	}
+
+	public void DestroyLaser()
+	{
+		if (gameObject.transform.parent != null)
+		{
+			DestroyObject(gameObject.transform.parent.gameObject);
+		}
+		else
 		{
 			DestroyObject(gameObject);
 		}
 	}
+
+
 }

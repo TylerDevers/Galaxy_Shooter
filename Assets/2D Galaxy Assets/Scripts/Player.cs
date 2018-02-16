@@ -14,6 +14,8 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] private float _playerSpeed = 5f;
 
+	[SerializeField] private int _playerLives = 3;
+
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector3(0f, 0f, 0f);
@@ -112,5 +114,20 @@ public class Player : MonoBehaviour {
 		_playerSpeed /= 3;
 		//speedBoostPossible = false;
 
+	}
+
+	public void LoseOneLife() //called from EnemyAI.cs
+	{
+		_playerLives -= 1;
+		Debug.Log("Lives left: " + _playerLives);
+		if (_playerLives <= 0)
+		{
+			PlayerDeath();
+		}
+	}
+
+	void PlayerDeath()
+	{
+		DestroyObject(gameObject);
 	}
 }
