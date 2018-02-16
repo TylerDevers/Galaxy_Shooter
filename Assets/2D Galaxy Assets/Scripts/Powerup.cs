@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Powerup : MonoBehaviour {
     [SerializeField] private float _speed = 3.0f;
+	[SerializeField] int powerupID; // 0 tripleshot, 1 speed boost, 2 shield
 
     // Use this for initialization
     void Start () {
@@ -24,7 +25,18 @@ public class Powerup : MonoBehaviour {
 
 			if (player != null) 
 			{
-				player.TripleShotTurnedOn();
+				if (powerupID == 0)
+				{
+					player.TripleShotTurnedOn();
+				}
+				else if (powerupID == 1) 
+				{
+					player.SpeedBoostTurnedOn();
+				}
+				else
+				{
+					Debug.Log("powerupID of powerup not defined");
+				}
 				
 				DestroyObject(gameObject);
 			}

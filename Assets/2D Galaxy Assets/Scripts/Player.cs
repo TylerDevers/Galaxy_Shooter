@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
 	public bool tripleShotPossible = false; //default will be false when power up created.
+	//public bool speedBoostPossible = false;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private float _rateOfFire = 0.25f;
@@ -96,5 +97,20 @@ public class Player : MonoBehaviour {
 	{
 		yield return new WaitForSeconds(5);
 		tripleShotPossible = false;
+	}
+
+	public void SpeedBoostTurnedOn()
+	{
+		//speedBoostPossible = true;
+		_playerSpeed *= 3;
+		StartCoroutine(SpeedBoostPowerDown());
+	}
+
+	IEnumerator SpeedBoostPowerDown()
+	{
+		yield return new WaitForSeconds(10);
+		_playerSpeed /= 3;
+		//speedBoostPossible = false;
+
 	}
 }
