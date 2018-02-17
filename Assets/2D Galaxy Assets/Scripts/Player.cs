@@ -16,6 +16,8 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] private int _playerLives = 3;
 
+	[SerializeField] GameObject _playerExplosion;
+
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector3(0f, 0f, 0f);
@@ -128,6 +130,7 @@ public class Player : MonoBehaviour {
 
 	void PlayerDeath()
 	{
+		Instantiate(_playerExplosion, transform.position, Quaternion.identity);
 		DestroyObject(gameObject);
 	}
 }

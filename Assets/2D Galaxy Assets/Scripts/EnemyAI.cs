@@ -7,7 +7,7 @@ public class EnemyAI : MonoBehaviour {
 
 
 	[SerializeField] float _enemySpeed = 2f;
-
+	[SerializeField] private GameObject enemyExplosionPrefab;
 
 
 	// Use this for initialization
@@ -37,10 +37,12 @@ public class EnemyAI : MonoBehaviour {
     void Movement()
 	{
 		transform.Translate(Vector3.down * _enemySpeed * Time.deltaTime);
+		
 	}
 
 	public void DestroyEnemy()
 	{
+		Instantiate(enemyExplosionPrefab, transform.position, Quaternion.identity);
 		DestroyObject(gameObject);
 	}
 
@@ -60,5 +62,7 @@ public class EnemyAI : MonoBehaviour {
 			laser.DestroyLaser();
 		}
 	}
+
+
 
 }
