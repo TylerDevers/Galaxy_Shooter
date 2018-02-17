@@ -16,7 +16,7 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] private int _playerLives = 3;
 
-	[SerializeField] GameObject _playerExplosion;
+	[SerializeField] private GameObject _playerExplosion;
 
 	// Use this for initialization
 	void Start () {

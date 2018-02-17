@@ -249,7 +249,7 @@ MonoBehaviour:
   _rateOfFire: 0.25
   _nextFire: 0
   _playerSpeed: 5
-  _playerLives: 3
+  _playerLives: 1
   _playerExplosion: {fileID: 1327039691570298, guid: 751379c8a410545bcac3f250b598f834,
     type: 2}
 --- !u!60 &376658033
