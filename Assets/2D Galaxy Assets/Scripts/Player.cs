@@ -119,14 +119,14 @@ public class Player : MonoBehaviour {
 	public void SpeedBoostTurnedOn()
 	{
 		//speedBoostPossible = true;
-		_playerSpeed *= 3;
+		_playerSpeed *= 1.5f;
 		StartCoroutine(SpeedBoostPowerDown());
 	}
 
 	IEnumerator SpeedBoostPowerDown()
 	{
 		yield return new WaitForSeconds(10);
-		_playerSpeed /= 3;
+		_playerSpeed /= 1.5f;
 		//speedBoostPossible = false;
 
 	}

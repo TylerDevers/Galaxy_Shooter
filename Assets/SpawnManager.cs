@@ -9,19 +9,26 @@ public class SpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(EnemySpawn());
+		StartCoroutine(EnemySpawnRoutine());
+		StartCoroutine(PowerupSpawnRoutine());
 	}
 
-	IEnumerator EnemySpawn()
+	IEnumerator EnemySpawnRoutine()
 	{
-		System.Random random = new System.Random();
-
 		while (true)
 		{
-			Instantiate(_enemyShipPrefab, new Vector3(random.Next(-75, 75)/10f, 6.5f, 0f), Quaternion.identity);
+			Instantiate(_enemyShipPrefab, new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0f), Quaternion.identity);
 			yield return new WaitForSeconds(5);
 		}
 	}
 	
+	IEnumerator PowerupSpawnRoutine()
+	{
+		while(true)
+		{
+			Instantiate(_powerups[Random.Range(0,3)], new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0), Quaternion.identity);
+			yield return new WaitForSeconds(5);
+		}
+	}
 
 }
