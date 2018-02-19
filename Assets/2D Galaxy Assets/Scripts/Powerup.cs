@@ -33,6 +33,10 @@ public class Powerup : MonoBehaviour {
 				{
 					player.SpeedBoostTurnedOn();
 				}
+				else if (powerupID == 2)
+				{
+					player.Shield();
+				}
 				else
 				{
 					Debug.Log("powerupID of powerup not defined");

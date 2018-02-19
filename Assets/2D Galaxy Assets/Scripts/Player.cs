@@ -7,8 +7,11 @@ public class Player : MonoBehaviour {
 
 	public bool tripleShotPossible = false; //default will be false when power up created.
 	//public bool speedBoostPossible = false;
+	public bool shieldActive = false;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
+	[SerializeField] private GameObject _playerExplosion;
+	[SerializeField] private GameObject _playerShields;
 	[SerializeField] private float _rateOfFire = 0.25f;
 	[SerializeField] private float _nextFire = 0.0f;
 
@@ -16,7 +19,8 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] private int _playerLives = 3;
 
-	[SerializeField] private GameObject _playerExplosion;
+
+	
 
 	// Use this for initialization
 	void Start () {
@@ -91,6 +95,15 @@ public class Player : MonoBehaviour {
 		_nextFire = Time.time + _rateOfFire;
 	}
 
+	public void Shield()
+	{
+		if (!shieldActive)
+		{
+			shieldActive = true;
+			_playerShields.SetActive(true);
+		}
+	}
+
 	public void TripleShotTurnedOn() //called from Powerup.cs
 	{
 		tripleShotPossible = true;
@@ -118,13 +131,21 @@ public class Player : MonoBehaviour {
 
 	}
 
-	public void LoseOneLife() //called from EnemyAI.cs
+	public void Damage() //called from EnemyAI.cs
 	{
-		_playerLives -= 1;
-		Debug.Log("Lives left: " + _playerLives);
-		if (_playerLives <= 0)
+		if (shieldActive)
 		{
-			PlayerDeath();
+			shieldActive = false;
+			_playerShields.SetActive(false);
+		}
+		else
+		{
+			_playerLives -= 1;
+			Debug.Log("Lives left: " + _playerLives);
+			if (_playerLives <= 0)
+			{
+				PlayerDeath();
+			}
 		}
 	}
 

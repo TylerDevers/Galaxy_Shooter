@@ -54,7 +54,7 @@ public class EnemyAI : MonoBehaviour {
 		if (player != null) 
 		{
 			DestroyEnemy();
-			player.LoseOneLife();
+			player.Damage();
 		}
 		if (laser != null)
 		{
