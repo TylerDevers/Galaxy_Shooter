@@ -8,6 +8,8 @@ public class Player : MonoBehaviour {
 	public bool tripleShotPossible = false; //default will be false when power up created.
 	//public bool speedBoostPossible = false;
 	public bool shieldActive = false;
+
+	private bool gameRunning;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private GameObject _playerExplosion;
@@ -26,11 +28,13 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		transform.position = new Vector3(0f, 0f, 0f);
-
+		gameRunning = false;
+		//transform.position = new Vector3(0f, 0f, 0f);
+		
 		//gain access to the UImanager Script on the canvas
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		uIManager.UpdateLives(_playerLives);
+		//uIManager.TitleScreen(gameRunning);
 	}
 	
 	// Update is called once per frame

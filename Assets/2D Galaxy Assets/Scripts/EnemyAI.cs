@@ -1,4 +1,4 @@
-﻿using System;
+﻿//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,12 +8,13 @@ public class EnemyAI : MonoBehaviour {
 
 	[SerializeField] float _enemySpeed = 2f;
 	[SerializeField] private GameObject _enemyExplosionPrefab;
+	
 
 	private UIManager uIManager;
 
 	// Use this for initialization
-	void Start () {
-		transform.position = new Vector3(7.5f, 6.5f, 0);
+	void Start () 
+	{
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 	}
 	

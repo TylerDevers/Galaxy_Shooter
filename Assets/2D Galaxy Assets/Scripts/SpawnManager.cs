@@ -6,11 +6,19 @@ public class SpawnManager : MonoBehaviour {
 
 	[SerializeField] private GameObject _enemyShipPrefab;
 	[SerializeField] private GameObject[] _powerups;
+	[SerializeField] private GameObject _playerPrefab;
 
 	// Use this for initialization
 	void Start () {
+		StartCoroutine(PlayerSpawn());
 		StartCoroutine(EnemySpawnRoutine());
 		StartCoroutine(PowerupSpawnRoutine());
+	}
+
+	IEnumerator PlayerSpawn()
+	{
+		Instantiate(_playerPrefab, new Vector3(0,0,0), Quaternion.identity);
+		yield return new WaitForSeconds(5);
 	}
 
 	IEnumerator EnemySpawnRoutine()

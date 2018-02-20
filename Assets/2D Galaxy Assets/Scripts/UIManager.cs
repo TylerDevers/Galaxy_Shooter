@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
 
+
 	public Sprite[] lives;
 	public Image playerLivesImage;
 	public int score;
@@ -22,5 +23,27 @@ public class UIManager : MonoBehaviour {
 	{
 		score += 10;
 		scoreText.text = score.ToString();
+	}
+
+	public void TitleScreen(bool gameRunning)
+	{
+		Image[] imageComponents = gameObject.GetComponentsInChildren<Image>();
+		if (gameRunning)
+		{
+			// clear score
+			scoreText.text = "0";
+			// reset lives
+			// spawn player into scene.
+			// remove title screen
+			print("TitleScreen called, game running");
+		}
+		else
+		{
+			//show title screen
+			//imageComponents[1].gameObject.SetActive(true);
+			//stop enemies 
+			print("TitleScreen called, game stopped");
+			//print(title.Length);
+		}
 	}
 }
