@@ -19,12 +19,18 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] private int _playerLives = 3;
 
+	private UIManager uIManager;
+
 
 	
 
 	// Use this for initialization
 	void Start () {
 		transform.position = new Vector3(0f, 0f, 0f);
+
+		//gain access to the UImanager Script on the canvas
+		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+		uIManager.UpdateLives(_playerLives);
 	}
 	
 	// Update is called once per frame
@@ -133,6 +139,7 @@ public class Player : MonoBehaviour {
 
 	public void Damage() //called from EnemyAI.cs
 	{
+
 		if (shieldActive)
 		{
 			shieldActive = false;
@@ -141,7 +148,7 @@ public class Player : MonoBehaviour {
 		else
 		{
 			_playerLives -= 1;
-			Debug.Log("Lives left: " + _playerLives);
+			uIManager.UpdateLives(_playerLives);
 			if (_playerLives <= 0)
 			{
 				PlayerDeath();
