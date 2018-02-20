@@ -5,11 +5,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	//todo hold off spawning unitl gameRunning is true,
+	// Spacebar press starts game, removes title, spawns first characters, resets score
+	// player destruction brings title back, stops ships
+	
 	public bool tripleShotPossible = false; //default will be false when power up created.
 	//public bool speedBoostPossible = false;
 	public bool shieldActive = false;
 
-	private bool gameRunning;
+	public bool gameRunning;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private GameObject _playerExplosion;
@@ -34,7 +38,7 @@ public class Player : MonoBehaviour {
 		//gain access to the UImanager Script on the canvas
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		uIManager.UpdateLives(_playerLives);
-		//uIManager.TitleScreen(gameRunning);
+		uIManager.TitleScreen(gameRunning);
 	}
 	
 	// Update is called once per frame

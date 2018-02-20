@@ -8,8 +8,8 @@ public class UIManager : MonoBehaviour {
 
 	public Sprite[] lives;
 	public Image playerLivesImage;
+	public GameObject titleOverlay;
 	public int score;
-
 	public Text scoreText;
 
 // Methods // 
@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour {
 
 	public void TitleScreen(bool gameRunning)
 	{
-		Image[] imageComponents = gameObject.GetComponentsInChildren<Image>();
 		if (gameRunning)
 		{
 			// clear score
@@ -39,11 +38,12 @@ public class UIManager : MonoBehaviour {
 		}
 		else
 		{
+			titleOverlay.SetActive(true);
 			//show title screen
 			//imageComponents[1].gameObject.SetActive(true);
 			//stop enemies 
 			print("TitleScreen called, game stopped");
-			//print(title.Length);
+			//print(title);
 		}
 	}
 }
