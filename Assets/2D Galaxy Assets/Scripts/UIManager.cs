@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour {
 
 	public Sprite[] lives;
 	public Image playerLivesImage;
-	public GameObject titleOverlay;
+	public GameObject titleScreen;
 	public int score;
 	public Text scoreText;
 
@@ -25,25 +25,15 @@ public class UIManager : MonoBehaviour {
 		scoreText.text = score.ToString();
 	}
 
-	public void TitleScreen(bool gameRunning)
+	public void HideTitleScreen()
 	{
-		if (gameRunning)
-		{
-			// clear score
-			scoreText.text = "0";
-			// reset lives
-			// spawn player into scene.
-			// remove title screen
-			print("TitleScreen called, game running");
-		}
-		else
-		{
-			titleOverlay.SetActive(true);
-			//show title screen
-			//imageComponents[1].gameObject.SetActive(true);
-			//stop enemies 
-			print("TitleScreen called, game stopped");
-			//print(title);
-		}
+		titleScreen.SetActive(false);
+	}
+	
+	public void ShowTitleScreen()
+	{
+		titleScreen.SetActive(true);	
+		scoreText.text = "0";	
+		score = 0;
 	}
 }

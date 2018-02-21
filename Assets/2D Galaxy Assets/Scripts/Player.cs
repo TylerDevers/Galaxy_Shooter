@@ -13,7 +13,6 @@ public class Player : MonoBehaviour {
 	//public bool speedBoostPossible = false;
 	public bool shieldActive = false;
 
-	public bool gameRunning;
 	[SerializeField] private GameObject _laserPrefab;
 	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private GameObject _playerExplosion;
@@ -27,18 +26,20 @@ public class Player : MonoBehaviour {
 
 	private UIManager uIManager;
 
-
+	private GameManager gameManager;
 	
 
 	// Use this for initialization
 	void Start () {
-		gameRunning = false;
+		
 		//transform.position = new Vector3(0f, 0f, 0f);
 		
 		//gain access to the UImanager Script on the canvas
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+
 		uIManager.UpdateLives(_playerLives);
-		uIManager.TitleScreen(gameRunning);
+		
 	}
 	
 	// Update is called once per frame
@@ -167,6 +168,8 @@ public class Player : MonoBehaviour {
 	void PlayerDeath()
 	{
 		Instantiate(_playerExplosion, transform.position, Quaternion.identity);
+		uIManager.ShowTitleScreen();
+		gameManager.gameOver = true;
 		DestroyObject(gameObject);
 	}
 }

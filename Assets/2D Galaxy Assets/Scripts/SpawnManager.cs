@@ -7,12 +7,14 @@ public class SpawnManager : MonoBehaviour {
 	[SerializeField] private GameObject _enemyShipPrefab;
 	[SerializeField] private GameObject[] _powerups;
 	[SerializeField] private GameObject _playerPrefab;
+	GameManager gameManager;
 
 	// Use this for initialization
 	void Start () {
-		StartCoroutine(PlayerSpawn());
-		StartCoroutine(EnemySpawnRoutine());
-		StartCoroutine(PowerupSpawnRoutine());
+		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+		//StartCoroutine(PlayerSpawn());
+		//StartCoroutine(EnemySpawnRoutine());
+		//StartCoroutine(PowerupSpawnRoutine());
 	}
 
 	IEnumerator PlayerSpawn()
@@ -23,7 +25,7 @@ public class SpawnManager : MonoBehaviour {
 
 	IEnumerator EnemySpawnRoutine()
 	{
-		while (true)
+		while (true && !gameManager.gameOver)
 		{
 			Instantiate(_enemyShipPrefab, new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0f), Quaternion.identity);
 			yield return new WaitForSeconds(5);
@@ -32,7 +34,7 @@ public class SpawnManager : MonoBehaviour {
 	
 	IEnumerator PowerupSpawnRoutine()
 	{
-		while(true)
+		while(true && !gameManager.gameOver)
 		{
 			Instantiate(_powerups[Random.Range(0,3)], new Vector3(Random.Range(-7.5f, 7.5f), 6.5f, 0), Quaternion.identity);
 			yield return new WaitForSeconds(5);
