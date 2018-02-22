@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 	[SerializeField] private GameObject _tripleShotPrefab;
 	[SerializeField] private GameObject _playerExplosion;
 	[SerializeField] private GameObject _playerShields;
+	[SerializeField] private GameObject[] _engineFailure;
 	[SerializeField] private float _rateOfFire = 0.25f;
 	[SerializeField] private float _nextFire = 0.0f;
 
@@ -27,6 +28,8 @@ public class Player : MonoBehaviour {
 	private UIManager uIManager;
 
 	private GameManager gameManager;
+
+	private AudioSource audioSource;
 	
 
 	// Use this for initialization
@@ -37,8 +40,9 @@ public class Player : MonoBehaviour {
 		//gain access to the UImanager Script on the canvas
 		uIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
 		gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-
+		audioSource = GetComponent<AudioSource>();
 		uIManager.UpdateLives(_playerLives);
+		
 		
 	}
 	
@@ -101,12 +105,14 @@ public class Player : MonoBehaviour {
     void TripleShot()
     {
 		Instantiate(_tripleShotPrefab, transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+		audioSource.Play();
 		_nextFire = Time.time + _rateOfFire; 
     }
 
     void SingleShot()
 	{
 		Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.95f, 0), Quaternion.identity);
+		audioSource.Play();
 		_nextFire = Time.time + _rateOfFire;
 	}
 
@@ -156,6 +162,7 @@ public class Player : MonoBehaviour {
 		}
 		else
 		{
+			EngineFailure();
 			_playerLives -= 1;
 			uIManager.UpdateLives(_playerLives);
 			if (_playerLives <= 0)
@@ -171,5 +178,17 @@ public class Player : MonoBehaviour {
 		uIManager.ShowTitleScreen();
 		gameManager.gameOver = true;
 		DestroyObject(gameObject);
+	}
+
+	void EngineFailure()
+	{
+		if (_engineFailure[0].activeInHierarchy == true)
+		{
+			_engineFailure[1].SetActive(true);
+		}
+		else if (_engineFailure[0].activeInHierarchy == false)
+		{
+			_engineFailure[0].SetActive(true);
+		}
 	}
 }

@@ -6,6 +6,7 @@ public class Powerup : MonoBehaviour {
     [SerializeField] private float _speed = 3.0f;
 	[SerializeField] int powerupID; // 0 tripleshot, 1 speed boost, 2 shield
 
+	[SerializeField] private AudioClip _powerupAudio;
     // Use this for initialization
     void Start () {
 		
@@ -45,7 +46,7 @@ public class Powerup : MonoBehaviour {
 				{
 					Debug.Log("powerupID of powerup not defined");
 				}
-				
+				AudioSource.PlayClipAtPoint(_powerupAudio, Camera.main.transform.position, 1f);
 				DestroyObject(gameObject);
 			}
 		}

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212401264733924470}
   - component: {fileID: 114076284747786730}
   - component: {fileID: 58526171162544450}
+  - component: {fileID: 95595793051839240}
   m_Layer: 0
   m_Name: TripleShot_Powerup
   m_TagString: Untagged
@@ -57,6 +58,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 1.19
+--- !u!95 &95595793051839240
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424459724005918}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2d040106011847b790e868369af725b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114076284747786730
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +88,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   powerupID: 0
+  _powerupAudio: {fileID: 8300000, guid: 5ee343246919d2b4bba63ae629e95494, type: 3}
 --- !u!212 &212401264733924470
 SpriteRenderer:
   m_ObjectHideFlags: 1
