@@ -4,4 +4,7 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/2D Galaxy Assets/_Scenes/Game.unity
+    guid: 64cc8bb10276a4148a0a8d8acebadf23

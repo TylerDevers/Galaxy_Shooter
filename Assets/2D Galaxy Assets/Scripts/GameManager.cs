@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour {
 		{
 			if (Input.GetKeyDown(KeyCode.Space))
 			{
-				print("spaceDown");
+				
 				Instantiate(player, Vector3.zero, Quaternion.identity);
 				gameOver = false;
 				_uiManager.HideTitleScreen();
